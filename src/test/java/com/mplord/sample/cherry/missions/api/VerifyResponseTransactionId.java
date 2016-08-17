@@ -7,7 +7,7 @@ import com.mplord.sample.mock.objects.FilingHistory;
 import io.magentys.Agent;
 import io.magentys.Mission;
 
-public class VerifyResponseTransactionId extends ApiMission implements Mission<Agent> {
+public class VerifyResponseTransactionId implements Mission<Agent> {
 
     public static VerifyResponseTransactionId verifiesResponseTransactionId() {
         return new VerifyResponseTransactionId();

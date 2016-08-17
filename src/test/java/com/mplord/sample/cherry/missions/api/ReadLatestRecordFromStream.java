@@ -2,12 +2,13 @@ package com.mplord.sample.cherry.missions.api;
 
 import java.util.List;
 
+import com.mplord.sample.cherry.tasks.WriteResults;
 import com.mplord.sample.mock.tools.QueueReader;
 
 import io.magentys.Agent;
 import io.magentys.Mission;
 
-public class ReadLatestRecordFromStream extends ApiMission implements Mission<Agent> {
+public class ReadLatestRecordFromStream implements Mission<Agent> {
 
     public static ReadLatestRecordFromStream readsLatestRecordFromStream() {
         return new ReadLatestRecordFromStream();
@@ -20,7 +21,7 @@ public class ReadLatestRecordFromStream extends ApiMission implements Mission<Ag
         qr.waitChange(true);
 
         List<String> results = qr.getNewResults();
-        outputResults("-N- ", results, false);
+        (new WriteResults()).outputResults("-N- ", results, false);
 
         agent.keepsInMind("response-record", results.get(0));
 

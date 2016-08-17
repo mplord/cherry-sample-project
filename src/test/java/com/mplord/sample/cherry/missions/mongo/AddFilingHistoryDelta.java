@@ -1,13 +1,12 @@
 package com.mplord.sample.cherry.missions.mongo;
 
-import com.mplord.sample.cherry.missions.api.ApiMission;
 import com.mplord.sample.mock.objects.FilingHistory;
 import com.mplord.sample.mock.tools.MongoWriter;
 
 import io.magentys.Agent;
 import io.magentys.Mission;
 
-public class AddFilingHistoryDelta extends ApiMission implements Mission<Agent> {
+public class AddFilingHistoryDelta implements Mission<Agent> {
 
     public static AddFilingHistoryDelta addsFilingHistoryDelta() {
         return new AddFilingHistoryDelta();
