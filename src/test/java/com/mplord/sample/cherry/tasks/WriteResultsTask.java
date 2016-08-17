@@ -2,7 +2,7 @@ package com.mplord.sample.cherry.tasks;
 
 import java.util.List;
 
-public class WriteResults {
+public class WriteResultsTask {
     public void outputResults(String prefix, List<String> results, boolean suppress) {
         if (suppress)
             return;
