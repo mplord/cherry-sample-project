@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.mplord.sample.cherry.memory.ResponseRecordKey;
+import com.mplord.sample.cherry.memory.TheResponseRecord;
 import com.mplord.sample.mock.tools.QueueReader;
 import com.mplord.sample.mock.tools.ResultWriter;
 
@@ -17,7 +17,7 @@ public class ReadLatestRecordFromStream implements Mission<Agent> {
     private QueueReader queueReader;
 
     @Inject
-    private ResponseRecordKey responseRecordKey;
+    private TheResponseRecord theResponseRecord;
 
     @Inject
     private ResultWriter resultWriter;
@@ -34,7 +34,7 @@ public class ReadLatestRecordFromStream implements Mission<Agent> {
         List<String> results = queueReader.getNewResults();
         resultWriter.outputResults("-N- ", results, false);
 
-        agent.keepsInMind(responseRecordKey.name(), results.get(0));
+        agent.keepsInMind(theResponseRecord.name(), results.get(0));
 
         return agent;
     }
