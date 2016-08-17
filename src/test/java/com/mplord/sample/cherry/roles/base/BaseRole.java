@@ -4,7 +4,6 @@ import javax.inject.Inject;
 
 import com.google.inject.Provider;
 import com.mplord.sample.cherry.custom.AgentMission;
-import com.mplord.sample.cherry.missions.agent.AskAgent;
 
 import io.magentys.Agent;
 import io.magentys.Mission;
@@ -29,11 +28,8 @@ public class BaseRole<T extends BaseRole<T>> {
         return agentMissionProvider.get().withAgent(agent).withMission(mission);
     }
 
-    public AgentMission asksAgent(String key, Agent otherAgent) {
-        return getMission(AskAgent.askAgent(key, otherAgent));
+    protected AgentMission getMission(Mission<Agent> mission, Agent otherAgent) {
+        return agentMissionProvider.get().withAgent(otherAgent).withMission(mission);
     }
 
-    public AgentMission informsAgent(String key, Agent otherAgent) {
-        return agentMissionProvider.get().withAgent(otherAgent).withMission(AskAgent.askAgent(key, agent));
-    }
 }

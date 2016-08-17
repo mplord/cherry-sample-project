@@ -2,9 +2,11 @@ package com.mplord.sample.cherry.agents;
 
 import javax.inject.Inject;
 
+import com.google.inject.Provider;
 import com.mplord.sample.cherry.custom.AgentMission;
 import com.mplord.sample.cherry.memory.BaseKey;
-import com.mplord.sample.cherry.roles.base.BaseRoleConcrete;
+import com.mplord.sample.cherry.roles.agent.AgentCommsRole;
+import com.mplord.sample.cherry.roles.base.BaseRole;
 
 import io.magentys.Agent;
 import io.magentys.CoreMemory;
@@ -12,7 +14,7 @@ import io.magentys.CoreMemory;
 public class BaseAgent extends Agent {
 
     @Inject
-    private BaseRoleConcrete baseRole;
+    private Provider<AgentCommsRole> agentCommsRole;
 
     private Agent otherAgent;
 
@@ -20,8 +22,8 @@ public class BaseAgent extends Agent {
         super(new CoreMemory());
     }
 
-    private BaseRoleConcrete withBaseRole() {
-        return baseRole.withAgent(this);
+    public AgentCommsRole withCommsRole() {
+        return getRole(agentCommsRole);
     }
 
     public BaseAgent asks(Agent otherAgent) {
@@ -30,7 +32,7 @@ public class BaseAgent extends Agent {
     }
 
     public AgentMission about(BaseKey key) {
-        return withBaseRole().asksAgent(key.name(), otherAgent);
+        return withCommsRole().asksAgent(otherAgent, key);
     }
 
     public BaseAgent informs(Agent otherAgent) {
@@ -39,10 +41,18 @@ public class BaseAgent extends Agent {
     }
 
     public AgentMission of(BaseKey key) {
-        return withBaseRole().informsAgent(key.name(), otherAgent);
+        return withCommsRole().informsAgent(otherAgent, key);
     }
 
-    // public <VALUE> VALUE recalls(BaseKey baseKey, Class<VALUE> clazz) {
-    // return recalls(baseKey.name(), clazz);
-    // }
+    protected <ROLE extends BaseRole<ROLE>> ROLE getRole(Provider<ROLE> role) {
+        return role.get().withAgent(this);
+    }
+
+    public AgentMission asksAgent(Agent otherAgent, BaseKey key) {
+        return withCommsRole().asksAgent(otherAgent, key);
+    }
+
+    public AgentMission informsAgent(Agent otherAgent, BaseKey key) {
+        return withCommsRole().informsAgent(otherAgent, key);
+    }
 }
