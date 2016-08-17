@@ -12,19 +12,19 @@ public class SampleTest extends TestBase {
 
     @Test
     public void test_consume_new_filing_history_record_after_new_delta() {
-        ApiAgent apiUser = new ApiAgent();
-        apiUser.obtains(new QueueReader());
+        ApiAgent apiAgent = new ApiAgent();
+        apiAgent.obtains(new QueueReader());
 
-        ChipsAgent chips = new ChipsAgent();
-        chips.obtains(new MongoWriter());
+        ChipsAgent chipsAgent = new ChipsAgent();
+        chipsAgent.obtains(new MongoWriter());
 
         CherryScenario.start().withTitle("consume new filing history record after new delta")
-            .given(apiUser.withSystemRole().connectsToTheStreamingApi())
-            .and(apiUser.withUserRole().consumesAllTheLatestRecords())
-            .when(chips.withUserRole().causesAFilingHistoryDeltaToBeSentFromChips())
-            .and(apiUser.withUserRole().readsLatestRecordFromStream())
-            .and(chips.informs(apiUser).of("filing-history"))
-            .then(apiUser.withUserRole().verifiesResponseTransactionId());
+            .given(apiAgent.withSystemRole().connectsToTheStreamingApi())
+            .and(apiAgent.withUserRole().consumesAllTheLatestRecords())
+            .when(chipsAgent.withUserRole().causesAFilingHistoryDeltaToBeSentFromChips())
+            .and(apiAgent.withUserRole().readsLatestRecordFromStream())
+            .and(chipsAgent.informs(apiAgent).of("filing-history"))
+            .then(apiAgent.withUserRole().verifiesResponseTransactionId());
     }
 
 }
