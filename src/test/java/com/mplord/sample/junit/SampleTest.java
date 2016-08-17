@@ -21,7 +21,7 @@ public class SampleTest extends TestBase {
         CherryScenario.start().withTitle("consume new filing history record after new delta")
             .given(apiUser.withSystemRole().connectsToTheStreamingApi())
             .and(apiUser.withUserRole().consumesAllTheLatestRecords())
-            .when(chips.withUserRole().causesAFilingHistoryDeltaToBeSentFromChipsRemembering("filing-history"))
+            .when(chips.withUserRole().causesAFilingHistoryDeltaToBeSentFromChips())
             .and(apiUser.withUserRole().readsLatestRecordFromStream())
             .and(chips.informs(apiUser).of("filing-history"))
             .then(apiUser.withUserRole().verifiesResponseTransactionId());

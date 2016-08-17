@@ -12,8 +12,8 @@ public class MongoSystemRole extends BaseRole {
         super(agent);
     }
 
-    public AgentMission causesAFilingHistoryDeltaToBeSentFromChipsRemembering(String key) {
-        return getMission(AddFilingHistoryDelta.addsFilingHistoryDelta(key));
+    public AgentMission causesAFilingHistoryDeltaToBeSentFromChips() {
+        return getMission(AddFilingHistoryDelta.addsFilingHistoryDelta());
     }
 
 }
