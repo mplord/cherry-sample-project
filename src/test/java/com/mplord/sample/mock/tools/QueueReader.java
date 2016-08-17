@@ -5,18 +5,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.jayway.restassured.response.Response;
-
 public class QueueReader implements Runnable {
-    private final long CHANGE_DETECTION_PERIOD = 5000;
-
     private final Object lock;
     private final List<String> newResults;
     private final List<String> oldResults;
-    private String incoming;
     private boolean ready = false;
 
-    private Response response;
     private InputStream inputStream;
     private BufferedReader reader;
 

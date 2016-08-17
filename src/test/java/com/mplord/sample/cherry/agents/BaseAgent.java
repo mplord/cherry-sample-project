@@ -4,14 +4,14 @@ import com.mplord.sample.cherry.custom.AgentMission;
 import com.mplord.sample.cherry.missions.agent.AskAgent;
 
 import io.magentys.Agent;
-import io.magentys.Memory;
+import io.magentys.CoreMemory;
 
 public class BaseAgent extends Agent {
 
     private Agent otherAgent;
 
-    public BaseAgent(Memory<String> memory) {
-        super(memory);
+    public BaseAgent() {
+        super(new CoreMemory());
     }
 
     public BaseAgent asks(Agent otherAgent) {

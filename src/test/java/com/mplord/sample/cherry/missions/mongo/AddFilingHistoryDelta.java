@@ -9,31 +9,19 @@ import io.magentys.Mission;
 
 public class AddFilingHistoryDelta extends ApiMission implements Mission<Agent> {
 
-    public static AddFilingHistoryDelta addsFilingHistoryDelta(String filingHistoryKey) {
-        return new AddFilingHistoryDelta(filingHistoryKey);
-    }
-
-    private String filingHistoryKey;
-
-    public AddFilingHistoryDelta(String filingHistoryKey) {
-        this.filingHistoryKey = filingHistoryKey;
+    public static AddFilingHistoryDelta addsFilingHistoryDelta() {
+        return new AddFilingHistoryDelta();
     }
 
     @Override
     public Agent accomplishAs(Agent agent) {
 
-        try {
-            System.out.println("Added a file history delta to the mongo queue");
+        System.out.println("Added a file history delta to the mongo queue");
 
-            FilingHistory filingHistory = new FilingHistory("UniqueId");
-            agent.keepsInMind(filingHistoryKey, filingHistory);
+        FilingHistory filingHistory = new FilingHistory("UniqueId");
+        agent.keepsInMind("filing-history", filingHistory);
 
-            // update in MongoDB queue stubbed out
-            System.out.println("MongoWriter tool obtained: " + agent.usingThe(MongoWriter.class));
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        System.out.println("MongoWriter tool obtained: " + agent.usingThe(MongoWriter.class));
 
         return agent;
     }
