@@ -4,13 +4,12 @@ import javax.inject.Inject;
 
 import com.mplord.sample.cherry.memory.TheFilingHistory;
 import com.mplord.sample.mock.objects.FilingHistory;
-import com.mplord.sample.mock.tools.ResultWriter;
 import com.mplord.sample.mock.tools.MongoWriter;
 
 import io.magentys.Agent;
 import io.magentys.Mission;
 
-public class AddFilingHistoryDelta extends ResultWriter implements Mission<Agent> {
+public class AddFilingHistoryDelta implements Mission<Agent> {
 
     @Inject
     private MongoWriter mongoWriter;

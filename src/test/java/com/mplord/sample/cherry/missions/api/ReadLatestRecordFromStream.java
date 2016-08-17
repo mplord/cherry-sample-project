@@ -5,8 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.mplord.sample.cherry.memory.TheResponseRecord;
+import com.mplord.sample.cherry.tasks.WriteResultsTask;
 import com.mplord.sample.mock.tools.QueueReader;
-import com.mplord.sample.mock.tools.ResultWriter;
 
 import io.magentys.Agent;
 import io.magentys.Mission;
@@ -20,7 +20,7 @@ public class ReadLatestRecordFromStream implements Mission<Agent> {
     private TheResponseRecord theResponseRecord;
 
     @Inject
-    private ResultWriter resultWriter;
+    private WriteResultsTask writeResultsTask;
 
     public static ReadLatestRecordFromStream readsLatestRecordFromStream() {
         return new ReadLatestRecordFromStream();
@@ -32,7 +32,7 @@ public class ReadLatestRecordFromStream implements Mission<Agent> {
         queueReader.waitChange(true);
 
         List<String> results = queueReader.getNewResults();
-        resultWriter.outputResults("-N- ", results, false);
+        writeResultsTask.outputResults("-N- ", results, false);
 
         agent.keepsInMind(theResponseRecord.name(), results.get(0));
 
