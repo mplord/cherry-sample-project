@@ -1,4 +1,4 @@
-package com.mplord.sample;
+package com.mplord.sample.junit;
 
 import org.junit.Before;
 
@@ -6,10 +6,9 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.mplord.sample.guice.GuiceModule;
 
-import cucumber.api.guice.CucumberModules;
 
 public class TestBase {
-    protected Injector injector = Guice.createInjector(CucumberModules.SCENARIO, new GuiceModule());
+    protected Injector injector = Guice.createInjector(new GuiceModule());
 
     @Before
     public void setup() {

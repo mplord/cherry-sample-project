@@ -13,6 +13,10 @@ public class CherryScenario {
         return this;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     private CherryScenario perform(AgentMission agentMission) {
         agentMission.perform();
         return this;
