@@ -6,13 +6,7 @@ import com.mplord.sample.cherry.missions.api.ReadLatestRecordFromStream;
 import com.mplord.sample.cherry.missions.api.VerifyResponseTransactionId;
 import com.mplord.sample.cherry.roles.base.BaseRole;
 
-import io.magentys.Agent;
-
-public class ApiRole extends BaseRole {
-
-    public ApiRole(Agent agent) {
-        super(agent);
-    }
+public class ApiRole extends BaseRole<ApiRole> {
 
     public AgentMission consumesAllTheLatestRecords() {
         return getMission(ConsumeLatestRecords.consumedLatestRecords());

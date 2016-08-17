@@ -38,4 +38,9 @@ public class CherryScenario {
         return perform(agentMission);
     }
 
+    /*
+     * public CherryScenario performAll(AgentMission... agentMissions) { for (AgentMission agentMission : agentMissions) { perform(agentMission); } return this;
+     * }
+     */
+
 }
