@@ -1,8 +1,8 @@
 package com.mplord.sample.cherry.memory;
 
-public class ResponseRecordKey extends BaseKey {
+public class TheResponseRecord extends BaseKey {
 
-    public ResponseRecordKey() {
+    public TheResponseRecord() {
         super("response-record");
     }
 }

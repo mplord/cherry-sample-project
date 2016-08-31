@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.mplord.sample.cherry.agents.ApiAgent;
 import com.mplord.sample.cherry.agents.ChipsAgent;
 import com.mplord.sample.cherry.custom.CherryScenario;
-import com.mplord.sample.cherry.memory.FilingHistoryKey;
+import com.mplord.sample.cherry.memory.TheFilingHistory;
 
 public class SampleTest extends TestBase {
 
@@ -18,7 +18,7 @@ public class SampleTest extends TestBase {
     private ChipsAgent chipsAgent;
 
     @Inject
-    private FilingHistoryKey filingHistory;
+    private TheFilingHistory theFilingHistory;
 
     @Test
     public void test_consume_new_filing_history_record_after_new_delta() {
@@ -28,7 +28,7 @@ public class SampleTest extends TestBase {
             .and(apiAgent.withUserRole().consumesAllTheLatestRecords())
             .when(chipsAgent.withUserRole().causesAFilingHistoryDeltaToBeSentFromChips())
             .and(apiAgent.withUserRole().readsLatestRecordFromStream())
-            .and(chipsAgent.informs(apiAgent).of(filingHistory))
+            .and(chipsAgent.informs(apiAgent).of(theFilingHistory))
             .then(apiAgent.withUserRole().verifiesResponseTransactionId());
 
     }

@@ -1,8 +1,8 @@
 package com.mplord.sample.cherry.memory;
 
-public class FilingHistoryKey extends BaseKey {
+public class TheFilingHistory extends BaseKey {
 
-    public FilingHistoryKey() {
+    public TheFilingHistory() {
         super("filing-history");
     }
 }
