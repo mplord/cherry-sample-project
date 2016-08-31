@@ -11,7 +11,7 @@ public class ChipsAgent extends BaseAgent {
     Provider<MongoSystemRole> mongoSystemRoleProvider;
 
     public MongoSystemRole withUserRole() {
-        return mongoSystemRoleProvider.get().withAgent(this);
+        return getRole(mongoSystemRoleProvider);
     }
 
 }

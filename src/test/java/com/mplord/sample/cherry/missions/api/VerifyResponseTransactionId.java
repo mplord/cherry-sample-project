@@ -4,8 +4,8 @@ import javax.inject.Inject;
 
 import org.junit.Assert;
 
-import com.mplord.sample.cherry.memory.FilingHistoryKey;
-import com.mplord.sample.cherry.memory.ResponseRecordKey;
+import com.mplord.sample.cherry.memory.TheFilingHistory;
+import com.mplord.sample.cherry.memory.TheResponseRecord;
 import com.mplord.sample.mock.objects.FilingHistory;
 
 import io.magentys.Mission;
@@ -14,10 +14,10 @@ import io.magentys.mplord.agent.AgentTypedMemory;
 public class VerifyResponseTransactionId implements Mission<AgentTypedMemory, AgentTypedMemory> {
 
     @Inject
-    private FilingHistoryKey filingHistoryKey;
+    private TheFilingHistory theFilingHistory;
 
     @Inject
-    private ResponseRecordKey responseRecordKey;
+    private TheResponseRecord theResponseRecord;
 
     public static VerifyResponseTransactionId verifiesResponseTransactionId() {
         return new VerifyResponseTransactionId();
@@ -25,9 +25,9 @@ public class VerifyResponseTransactionId implements Mission<AgentTypedMemory, Ag
 
     @Override
     public AgentTypedMemory accomplishAs(AgentTypedMemory agent) {
-        FilingHistory filingHistory = agent.recalls(filingHistoryKey);
+        FilingHistory filingHistory = agent.recalls(theFilingHistory);
 
-        String filingHistoryResponseId = agent.recalls(responseRecordKey);
+        String filingHistoryResponseId = agent.recalls(theResponseRecord);
 
         System.out.println("Response Id: " + filingHistoryResponseId);
 

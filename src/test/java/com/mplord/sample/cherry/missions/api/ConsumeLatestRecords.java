@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import com.mplord.sample.cherry.tasks.WriteResultsTask;
 import com.mplord.sample.mock.tools.QueueReader;
-import com.mplord.sample.mock.tools.ResultWriter;
 
 import io.magentys.Mission;
 import io.magentys.mplord.agent.AgentTypedMemory;
@@ -16,7 +16,7 @@ public class ConsumeLatestRecords implements Mission<AgentTypedMemory, AgentType
     private QueueReader queueReader;
 
     @Inject
-    private ResultWriter resultWriter;
+    private WriteResultsTask writeResultsTask;
 
     public static ConsumeLatestRecords consumedLatestRecords() {
         return new ConsumeLatestRecords();
@@ -30,7 +30,7 @@ public class ConsumeLatestRecords implements Mission<AgentTypedMemory, AgentType
 
         // task - output latest results
         List<String> newResults = queueReader.getNewResults();
-        resultWriter.outputResults("-F- ", newResults, true);
+        writeResultsTask.outputResults("-F- ", newResults, true);
 
         return agent;
     }

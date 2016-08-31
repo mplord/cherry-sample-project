@@ -2,8 +2,10 @@ package com.mplord.sample.cherry.agents;
 
 import javax.inject.Inject;
 
+import com.google.inject.Provider;
 import com.mplord.sample.cherry.custom.AgentMission;
-import com.mplord.sample.cherry.roles.base.BaseRoleConcrete;
+import com.mplord.sample.cherry.roles.agent.AgentCommsRole;
+import com.mplord.sample.cherry.roles.base.BaseRole;
 
 import io.magentys.commons.typemap.TypedKey;
 import io.magentys.mplord.agent.AgentTypedMemory;
@@ -11,7 +13,7 @@ import io.magentys.mplord.agent.AgentTypedMemory;
 public class BaseAgent extends AgentTypedMemory {
 
     @Inject
-    private BaseRoleConcrete baseRole;
+    private Provider<AgentCommsRole> agentCommsRole;
 
     private AgentTypedMemory otherAgent;
 
@@ -19,8 +21,8 @@ public class BaseAgent extends AgentTypedMemory {
         super();
     }
 
-    private BaseRoleConcrete withBaseRole() {
-        return baseRole.withAgent(this);
+    public AgentCommsRole withCommsRole() {
+        return getRole(agentCommsRole);
     }
 
     public BaseAgent asks(AgentTypedMemory otherAgent) {
@@ -29,7 +31,7 @@ public class BaseAgent extends AgentTypedMemory {
     }
 
     public AgentMission about(TypedKey<?> key) {
-        return withBaseRole().asksAgent(key, otherAgent);
+        return withCommsRole().asksAgent(otherAgent, key);
     }
 
     public BaseAgent informs(AgentTypedMemory otherAgent) {
@@ -38,10 +40,18 @@ public class BaseAgent extends AgentTypedMemory {
     }
 
     public AgentMission of(TypedKey<?> key) {
-        return withBaseRole().informsAgent(key, otherAgent);
+        return withCommsRole().informsAgent(otherAgent, key);
     }
 
-    // public <VALUE> VALUE recalls(BaseKey baseKey, Class<VALUE> clazz) {
-    // return recalls(baseKey.name(), clazz);
-    // }
+    protected <ROLE extends BaseRole<ROLE>> ROLE getRole(Provider<ROLE> role) {
+        return role.get().withAgent(this);
+    }
+
+    public AgentMission asksAgent(AgentTypedMemory otherAgent, TypedKey<?> key) {
+        return withCommsRole().asksAgent(otherAgent, key);
+    }
+
+    public AgentMission informsAgent(AgentTypedMemory otherAgent, TypedKey<?> key) {
+        return withCommsRole().informsAgent(otherAgent, key);
+    }
 }

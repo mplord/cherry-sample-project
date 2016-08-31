@@ -15,11 +15,11 @@ public class ApiAgent extends BaseAgent {
     Provider<ApiRole> apiRoleProvider;
 
     public ApiSystemRole withSystemRole() {
-        return apiSystemRoleProvider.get().withAgent(this);
+        return getRole(apiSystemRoleProvider);
     }
 
     public ApiRole withUserRole() {
-        return apiRoleProvider.get().withAgent(this);
+        return getRole(apiRoleProvider);
     }
 
 }

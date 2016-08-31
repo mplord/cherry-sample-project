@@ -4,9 +4,9 @@ import com.mplord.sample.mock.objects.FilingHistory;
 
 import io.magentys.commons.typemap.TypedKey;
 
-public class FilingHistoryKey extends TypedKey<FilingHistory> {
+public class TheFilingHistory extends TypedKey<FilingHistory> {
 
-    public FilingHistoryKey() {
+    public TheFilingHistory() {
         super("filing-history");
     }
 }

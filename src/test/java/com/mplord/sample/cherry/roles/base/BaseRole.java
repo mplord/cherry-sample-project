@@ -31,6 +31,10 @@ public class BaseRole<T extends BaseRole<T>> {
         return agentMissionProvider.get().withAgent(agent).withMission(mission);
     }
 
+    protected AgentMission getMission(Mission<AgentTypedMemory, AgentTypedMemory> mission, AgentTypedMemory otherAgent) {
+        return agentMissionProvider.get().withAgent(otherAgent).withMission(mission);
+    }
+    
     public AgentMission asksAgent(TypedKey<?> key, AgentTypedMemory otherAgent) {
         return getMission(AskAgent.askAgent(key, otherAgent));
     }
