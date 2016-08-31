@@ -8,10 +8,10 @@ import com.mplord.sample.cherry.memory.ResponseRecordKey;
 import com.mplord.sample.mock.tools.QueueReader;
 import com.mplord.sample.mock.tools.ResultWriter;
 
-import io.magentys.Agent;
 import io.magentys.Mission;
+import io.magentys.mplord.agent.AgentTypedMemory;
 
-public class ReadLatestRecordFromStream implements Mission<Agent> {
+public class ReadLatestRecordFromStream implements Mission<AgentTypedMemory, AgentTypedMemory> {
 
     @Inject
     private QueueReader queueReader;
@@ -27,14 +27,14 @@ public class ReadLatestRecordFromStream implements Mission<Agent> {
     }
 
     @Override
-    public Agent accomplishAs(Agent agent) {
+    public AgentTypedMemory accomplishAs(AgentTypedMemory agent) {
 
         queueReader.waitChange(true);
 
         List<String> results = queueReader.getNewResults();
         resultWriter.outputResults("-N- ", results, false);
 
-        agent.keepsInMind(responseRecordKey.name(), results.get(0));
+        agent.keepsInMind(responseRecordKey, results.get(0));
 
         return agent;
     }

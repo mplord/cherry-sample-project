@@ -3,43 +3,42 @@ package com.mplord.sample.cherry.agents;
 import javax.inject.Inject;
 
 import com.mplord.sample.cherry.custom.AgentMission;
-import com.mplord.sample.cherry.memory.BaseKey;
 import com.mplord.sample.cherry.roles.base.BaseRoleConcrete;
 
-import io.magentys.Agent;
-import io.magentys.CoreMemory;
+import io.magentys.commons.typemap.TypedKey;
+import io.magentys.mplord.agent.AgentTypedMemory;
 
-public class BaseAgent extends Agent {
+public class BaseAgent extends AgentTypedMemory {
 
     @Inject
     private BaseRoleConcrete baseRole;
 
-    private Agent otherAgent;
+    private AgentTypedMemory otherAgent;
 
     public BaseAgent() {
-        super(new CoreMemory());
+        super();
     }
 
     private BaseRoleConcrete withBaseRole() {
         return baseRole.withAgent(this);
     }
 
-    public BaseAgent asks(Agent otherAgent) {
+    public BaseAgent asks(AgentTypedMemory otherAgent) {
         this.otherAgent = otherAgent;
         return this;
     }
 
-    public AgentMission about(BaseKey key) {
-        return withBaseRole().asksAgent(key.name(), otherAgent);
+    public AgentMission about(TypedKey<?> key) {
+        return withBaseRole().asksAgent(key, otherAgent);
     }
 
-    public BaseAgent informs(Agent otherAgent) {
+    public BaseAgent informs(AgentTypedMemory otherAgent) {
         this.otherAgent = otherAgent;
         return this;
     }
 
-    public AgentMission of(BaseKey key) {
-        return withBaseRole().informsAgent(key.name(), otherAgent);
+    public AgentMission of(TypedKey<?> key) {
+        return withBaseRole().informsAgent(key, otherAgent);
     }
 
     // public <VALUE> VALUE recalls(BaseKey baseKey, Class<VALUE> clazz) {

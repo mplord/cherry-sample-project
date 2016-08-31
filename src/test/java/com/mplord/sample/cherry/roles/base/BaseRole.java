@@ -6,34 +6,36 @@ import com.google.inject.Provider;
 import com.mplord.sample.cherry.custom.AgentMission;
 import com.mplord.sample.cherry.missions.agent.AskAgent;
 
-import io.magentys.Agent;
 import io.magentys.Mission;
+import io.magentys.commons.typemap.TypedKey;
+import io.magentys.mplord.agent.AgentTypedMemory;
 
 public class BaseRole<T extends BaseRole<T>> {
 
     @Inject
     Provider<AgentMission> agentMissionProvider;
 
-    private Agent agent;
+    private AgentTypedMemory agent;
 
-    public T withAgent(Agent agent) {
+    @SuppressWarnings("unchecked")
+    public T withAgent(AgentTypedMemory agent) {
         this.agent = agent;
         return (T) this;
     }
 
-    protected Agent getAgent() {
+    protected AgentTypedMemory getAgent() {
         return agent;
     }
 
-    protected AgentMission getMission(Mission<Agent> mission) {
+    protected AgentMission getMission(Mission<AgentTypedMemory, AgentTypedMemory> mission) {
         return agentMissionProvider.get().withAgent(agent).withMission(mission);
     }
 
-    public AgentMission asksAgent(String key, Agent otherAgent) {
+    public AgentMission asksAgent(TypedKey<?> key, AgentTypedMemory otherAgent) {
         return getMission(AskAgent.askAgent(key, otherAgent));
     }
 
-    public AgentMission informsAgent(String key, Agent otherAgent) {
+    public AgentMission informsAgent(TypedKey<?> key, AgentTypedMemory otherAgent) {
         return agentMissionProvider.get().withAgent(otherAgent).withMission(AskAgent.askAgent(key, agent));
     }
 }

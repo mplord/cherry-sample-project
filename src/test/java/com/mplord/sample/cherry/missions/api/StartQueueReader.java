@@ -4,10 +4,10 @@ import javax.inject.Inject;
 
 import com.mplord.sample.mock.tools.QueueReader;
 
-import io.magentys.Agent;
 import io.magentys.Mission;
+import io.magentys.mplord.agent.AgentTypedMemory;
 
-public class StartQueueReader implements Mission<Agent> {
+public class StartQueueReader implements Mission<AgentTypedMemory, AgentTypedMemory> {
 
     @Inject
     private QueueReader queueReader;
@@ -17,7 +17,7 @@ public class StartQueueReader implements Mission<Agent> {
     }
 
     @Override
-    public Agent accomplishAs(Agent agent) {
+    public AgentTypedMemory accomplishAs(AgentTypedMemory agent) {
 
         queueReader.start();
 

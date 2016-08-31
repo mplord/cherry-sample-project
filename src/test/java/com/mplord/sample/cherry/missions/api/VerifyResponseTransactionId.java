@@ -8,10 +8,10 @@ import com.mplord.sample.cherry.memory.FilingHistoryKey;
 import com.mplord.sample.cherry.memory.ResponseRecordKey;
 import com.mplord.sample.mock.objects.FilingHistory;
 
-import io.magentys.Agent;
 import io.magentys.Mission;
+import io.magentys.mplord.agent.AgentTypedMemory;
 
-public class VerifyResponseTransactionId implements Mission<Agent> {
+public class VerifyResponseTransactionId implements Mission<AgentTypedMemory, AgentTypedMemory> {
 
     @Inject
     private FilingHistoryKey filingHistoryKey;
@@ -24,10 +24,10 @@ public class VerifyResponseTransactionId implements Mission<Agent> {
     }
 
     @Override
-    public Agent accomplishAs(Agent agent) {
-        FilingHistory filingHistory = agent.recalls(filingHistoryKey.name(), FilingHistory.class);
+    public AgentTypedMemory accomplishAs(AgentTypedMemory agent) {
+        FilingHistory filingHistory = agent.recalls(filingHistoryKey);
 
-        String filingHistoryResponseId = agent.recalls(responseRecordKey.name(), String.class);
+        String filingHistoryResponseId = agent.recalls(responseRecordKey);
 
         System.out.println("Response Id: " + filingHistoryResponseId);
 
