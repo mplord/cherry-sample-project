@@ -6,10 +6,10 @@ import com.mplord.sample.cherry.memory.TheFilingHistory;
 import com.mplord.sample.mock.objects.FilingHistory;
 import com.mplord.sample.mock.tools.MongoWriter;
 
-import io.magentys.Mission;
+import io.magentys.MissionTypedMemory;
 import io.magentys.mplord.agent.AgentTypedMemory;
 
-public class AddFilingHistoryDelta implements Mission<AgentTypedMemory, AgentTypedMemory> {
+public class AddFilingHistoryDelta implements MissionTypedMemory<AgentTypedMemory> {
 
     @Inject
     private MongoWriter mongoWriter;

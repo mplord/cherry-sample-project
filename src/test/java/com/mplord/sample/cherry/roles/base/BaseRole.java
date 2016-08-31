@@ -6,7 +6,7 @@ import com.google.inject.Provider;
 import com.mplord.sample.cherry.custom.AgentMission;
 import com.mplord.sample.cherry.missions.agent.AskAgent;
 
-import io.magentys.Mission;
+import io.magentys.MissionTypedMemory;
 import io.magentys.commons.typemap.TypedKey;
 import io.magentys.mplord.agent.AgentTypedMemory;
 
@@ -27,11 +27,11 @@ public class BaseRole<T extends BaseRole<T>> {
         return agent;
     }
 
-    protected AgentMission getMission(Mission<AgentTypedMemory, AgentTypedMemory> mission) {
+    protected AgentMission getMission(MissionTypedMemory<AgentTypedMemory> mission) {
         return agentMissionProvider.get().withAgent(agent).withMission(mission);
     }
 
-    protected AgentMission getMission(Mission<AgentTypedMemory, AgentTypedMemory> mission, AgentTypedMemory otherAgent) {
+    protected AgentMission getMission(MissionTypedMemory<AgentTypedMemory> mission, AgentTypedMemory otherAgent) {
         return agentMissionProvider.get().withAgent(otherAgent).withMission(mission);
     }
     

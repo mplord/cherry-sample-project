@@ -1,10 +1,10 @@
 package com.mplord.sample.cherry.missions.agent;
 
-import io.magentys.Mission;
+import io.magentys.MissionTypedMemory;
 import io.magentys.commons.typemap.TypedKey;
 import io.magentys.mplord.agent.AgentTypedMemory;
 
-public class AskAgent implements Mission<AgentTypedMemory, AgentTypedMemory> {
+public class AskAgent implements MissionTypedMemory<AgentTypedMemory> {
 
     public static AskAgent askAgent(TypedKey<?> key, AgentTypedMemory otherAgent) {
         return new AskAgent(key, otherAgent);

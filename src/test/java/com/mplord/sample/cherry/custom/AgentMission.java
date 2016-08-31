@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import com.google.inject.Injector;
 
-import io.magentys.Mission;
+import io.magentys.MissionTypedMemory;
 import io.magentys.mplord.agent.AgentTypedMemory;
 
 public class AgentMission {
@@ -12,7 +12,7 @@ public class AgentMission {
     private Injector injector;
 
     private AgentTypedMemory agent;
-    private Mission<AgentTypedMemory, AgentTypedMemory> mission;
+    private MissionTypedMemory<AgentTypedMemory> mission;
 
     public AgentMission() {
     }
@@ -22,7 +22,7 @@ public class AgentMission {
         return this;
     }
 
-    public AgentMission withMission(Mission<AgentTypedMemory, AgentTypedMemory> mission) {
+    public AgentMission withMission(MissionTypedMemory<AgentTypedMemory> mission) {
         this.mission = mission;
         injector.injectMembers(mission);
         return this;
