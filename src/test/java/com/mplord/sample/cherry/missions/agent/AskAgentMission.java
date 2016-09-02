@@ -1,18 +1,15 @@
 package com.mplord.sample.cherry.missions.agent;
 
 import io.magentys.Agent;
-import io.magentys.Mission;
+import io.magentys.mplord.Skill;
 
-public class AskAgent implements Mission<Agent> {
-
-    public static AskAgent askAgent(String key, Agent otherAgent) {
-        return new AskAgent(key, otherAgent);
-    }
+public class AskAgentMission extends Skill {
 
     private String key;
     private Agent otherAgent;
 
-    public AskAgent(String key, Agent otherAgent) {
+    public AskAgentMission(Agent agent, String key, Agent otherAgent) {
+        super(agent);
         this.key = key;
         this.otherAgent = otherAgent;
     }

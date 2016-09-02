@@ -1,16 +1,16 @@
 package com.mplord.sample.cherry.agents;
 
-import com.mplord.sample.cherry.roles.api.ApiRole;
-import com.mplord.sample.cherry.roles.api.ApiSystemRole;
+import com.mplord.sample.cherry.roles.api.ApiUserSkills;
+import com.mplord.sample.cherry.roles.api.ApiSystemSkills;
 
 public class ApiAgent extends BaseAgent {
 
-    public ApiSystemRole withSystemRole() {
-        return new ApiSystemRole(this);
+    public ApiSystemSkills withSystemSkills() {
+        return new ApiSystemSkills(this);
     }
 
-    public ApiRole withUserRole() {
-        return new ApiRole(this);
+    public ApiUserSkills withUserSkills() {
+        return new ApiUserSkills(this);
     }
 
 }

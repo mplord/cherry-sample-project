@@ -1,9 +1,9 @@
-package com.mplord.sample.cherry.missions.api;
+package com.mplord.sample.cherry.tasks;
 
 import java.util.List;
 
-public class ApiMission {
-    public void outputResults(String prefix, List<String> results, boolean suppress) {
+public class OutputResultsTask {
+    public static void outputResults(String prefix, List<String> results, boolean suppress) {
         if (suppress)
             return;
         System.out.println("");

@@ -5,13 +5,9 @@ import org.junit.Assert;
 import com.mplord.sample.mock.objects.FilingHistory;
 
 import io.magentys.Agent;
-import io.magentys.Mission;
+import io.magentys.mplord.Skill;
 
-public class VerifyResponseTransactionId extends ApiMission implements Mission<Agent> {
-
-    public static VerifyResponseTransactionId verifiesResponseTransactionId() {
-        return new VerifyResponseTransactionId();
-    }
+public class VerifyResponseTransactionIdMission extends Skill {
 
     @Override
     public Agent accomplishAs(Agent agent) {

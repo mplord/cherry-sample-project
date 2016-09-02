@@ -1,7 +1,6 @@
 package com.mplord.sample.cherry.agents;
 
-import com.mplord.sample.cherry.custom.AgentMission;
-import com.mplord.sample.cherry.missions.agent.AskAgent;
+import com.mplord.sample.cherry.missions.agent.AskAgentMission;
 
 import io.magentys.Agent;
 import io.magentys.CoreMemory;
@@ -19,8 +18,8 @@ public class BaseAgent extends Agent {
         return this;
     }
 
-    public AgentMission about(String key) {
-        return (new AgentMission()).withAgent(this).withMission(AskAgent.askAgent(key, otherAgent));
+    public AskAgentMission about(String key) {
+        return new AskAgentMission(this, key, otherAgent);
     }
 
     public BaseAgent informs(Agent otherAgent) {
@@ -28,8 +27,8 @@ public class BaseAgent extends Agent {
         return this;
     }
 
-    public AgentMission of(String key) {
-        return (new AgentMission()).withAgent(otherAgent).withMission(AskAgent.askAgent(key, this));
+    public AskAgentMission of(String key) {
+        return new AskAgentMission(otherAgent, key, this);
     }
 
 }

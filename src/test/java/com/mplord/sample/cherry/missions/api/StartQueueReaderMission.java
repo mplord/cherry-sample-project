@@ -3,13 +3,9 @@ package com.mplord.sample.cherry.missions.api;
 import com.mplord.sample.mock.tools.QueueReader;
 
 import io.magentys.Agent;
-import io.magentys.Mission;
+import io.magentys.mplord.Skill;
 
-public class StartQueueReader implements Mission<Agent> {
-
-    public static StartQueueReader startedQueueReader() {
-        return new StartQueueReader();
-    }
+public class StartQueueReaderMission extends Skill {
 
     @Override
     public Agent accomplishAs(Agent agent) {
