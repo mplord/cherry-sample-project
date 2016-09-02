@@ -3,11 +3,10 @@ package com.mplord.sample.cherry.agents;
 import javax.inject.Inject;
 
 import com.google.inject.Provider;
-import com.mplord.sample.cherry.custom.AgentMission;
 import com.mplord.sample.cherry.roles.agent.AgentCommsRole;
-import com.mplord.sample.cherry.roles.base.BaseRole;
 
 import io.magentys.commons.typemap.TypedKey;
+import io.magentys.mplord.Skill;
 import io.magentys.mplord.agent.AgentTypedMemory;
 
 public class BaseAgent extends AgentTypedMemory {
@@ -17,12 +16,10 @@ public class BaseAgent extends AgentTypedMemory {
 
     private AgentTypedMemory otherAgent;
 
-    public BaseAgent() {
-        super();
-    }
-
     public AgentCommsRole withCommsRole() {
-        return getRole(agentCommsRole);
+        AgentCommsRole skills = agentCommsRole.get();
+        skills.withAgent(this);
+        return skills;
     }
 
     public BaseAgent asks(AgentTypedMemory otherAgent) {
@@ -30,7 +27,7 @@ public class BaseAgent extends AgentTypedMemory {
         return this;
     }
 
-    public AgentMission about(TypedKey<?> key) {
+    public Skill about(TypedKey<?> key) {
         return withCommsRole().asksAgent(otherAgent, key);
     }
 
@@ -39,19 +36,15 @@ public class BaseAgent extends AgentTypedMemory {
         return this;
     }
 
-    public AgentMission of(TypedKey<?> key) {
+    public Skill of(TypedKey<?> key) {
         return withCommsRole().informsAgent(otherAgent, key);
     }
 
-    protected <ROLE extends BaseRole<ROLE>> ROLE getRole(Provider<ROLE> role) {
-        return role.get().withAgent(this);
-    }
-
-    public AgentMission asksAgent(AgentTypedMemory otherAgent, TypedKey<?> key) {
+    public Skill asksAgent(AgentTypedMemory otherAgent, TypedKey<?> key) {
         return withCommsRole().asksAgent(otherAgent, key);
     }
 
-    public AgentMission informsAgent(AgentTypedMemory otherAgent, TypedKey<?> key) {
+    public Skill informsAgent(AgentTypedMemory otherAgent, TypedKey<?> key) {
         return withCommsRole().informsAgent(otherAgent, key);
     }
 }

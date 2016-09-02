@@ -1,41 +1,42 @@
 package com.mplord.sample.cherry.custom;
 
+import io.magentys.mplord.Skill;
+
 public class CherryScenario {
 
     private String title;
 
-    public static CherryScenario start() {
-        return new CherryScenario();
+    public static CherryScenario start(String title) {
+        return new CherryScenario(title);
     }
 
-    public CherryScenario withTitle(String title) {
+    public CherryScenario(String title) {
         this.title = title;
-        return this;
     }
 
     public String getTitle() {
         return title;
     }
 
-    private CherryScenario perform(AgentMission agentMission) {
-        agentMission.perform();
+    private CherryScenario perform(Skill skill) {
+        skill.accomplish();
         return this;
     }
 
-    public CherryScenario given(AgentMission agentMission) {
-        return perform(agentMission);
+    public CherryScenario given(Skill skill) {
+        return perform(skill);
     }
 
-    public CherryScenario when(AgentMission agentMission) {
-        return perform(agentMission);
+    public CherryScenario when(Skill skill) {
+        return perform(skill);
     }
 
-    public CherryScenario then(AgentMission agentMission) {
-        return perform(agentMission);
+    public CherryScenario then(Skill skill) {
+        return perform(skill);
     }
 
-    public CherryScenario and(AgentMission agentMission) {
-        return perform(agentMission);
+    public CherryScenario and(Skill skill) {
+        return perform(skill);
     }
 
     /*

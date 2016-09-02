@@ -23,13 +23,13 @@ public class SampleTest extends TestBase {
     @Test
     public void test_consume_new_filing_history_record_after_new_delta() {
 
-        CherryScenario.start().withTitle("consume new filing history record after new delta")
-            .given(apiAgent.withSystemRole().connectsToTheStreamingApi())
-            .and(apiAgent.withUserRole().consumesAllTheLatestRecords())
-            .when(chipsAgent.withUserRole().causesAFilingHistoryDeltaToBeSentFromChips())
-            .and(apiAgent.withUserRole().readsLatestRecordFromStream())
+        CherryScenario.start("consume new filing history record after new delta")
+            .given(apiAgent.withSystemSkills().connectsToTheStreamingApi())
+            .and(apiAgent.withUserSkills().consumesAllTheLatestRecords())
+            .when(chipsAgent.withUserSkills().causesAFilingHistoryDeltaToBeSentFromChips())
+            .and(apiAgent.withUserSkills().readsLatestRecordFromStream())
             .and(chipsAgent.informs(apiAgent).of(theFilingHistory))
-            .then(apiAgent.withUserRole().verifiesResponseTransactionId());
+            .then(apiAgent.withUserSkills().verifiesResponseTransactionId());
 
     }
 

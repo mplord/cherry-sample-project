@@ -3,23 +3,27 @@ package com.mplord.sample.cherry.agents;
 import javax.inject.Inject;
 
 import com.google.inject.Provider;
-import com.mplord.sample.cherry.roles.api.ApiRole;
-import com.mplord.sample.cherry.roles.api.ApiSystemRole;
+import com.mplord.sample.cherry.roles.api.ApiSystemSkills;
+import com.mplord.sample.cherry.roles.api.ApiUserSkills;
 
 public class ApiAgent extends BaseAgent {
 
     @Inject
-    Provider<ApiSystemRole> apiSystemRoleProvider;
+    Provider<ApiSystemSkills> apiSystemRoleProvider;
 
     @Inject
-    Provider<ApiRole> apiRoleProvider;
+    Provider<ApiUserSkills> apiRoleProvider;
 
-    public ApiSystemRole withSystemRole() {
-        return getRole(apiSystemRoleProvider);
+    public ApiSystemSkills withSystemSkills() {
+        ApiSystemSkills skills = apiSystemRoleProvider.get();
+        skills.withAgent(this);
+        return skills;
     }
 
-    public ApiRole withUserRole() {
-        return getRole(apiRoleProvider);
+    public ApiUserSkills withUserSkills() {
+        ApiUserSkills skills = apiRoleProvider.get();
+        skills.withAgent(this);
+        return skills;
     }
 
 }

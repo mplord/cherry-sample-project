@@ -8,20 +8,16 @@ import com.mplord.sample.cherry.memory.TheFilingHistory;
 import com.mplord.sample.cherry.memory.TheResponseRecord;
 import com.mplord.sample.mock.objects.FilingHistory;
 
-import io.magentys.MissionTypedMemory;
+import io.magentys.mplord.Skill;
 import io.magentys.mplord.agent.AgentTypedMemory;
 
-public class VerifyResponseTransactionId implements MissionTypedMemory<AgentTypedMemory> {
+public class VerifyResponseTransactionIdMission extends Skill {
 
     @Inject
     private TheFilingHistory theFilingHistory;
 
     @Inject
     private TheResponseRecord theResponseRecord;
-
-    public static VerifyResponseTransactionId verifiesResponseTransactionId() {
-        return new VerifyResponseTransactionId();
-    }
 
     @Override
     public AgentTypedMemory accomplishAs(AgentTypedMemory agent) {

@@ -3,15 +3,17 @@ package com.mplord.sample.cherry.agents;
 import javax.inject.Inject;
 
 import com.google.inject.Provider;
-import com.mplord.sample.cherry.roles.mongo.MongoSystemRole;
+import com.mplord.sample.cherry.roles.mongo.MongoSystemSkills;
 
 public class ChipsAgent extends BaseAgent {
 
     @Inject
-    Provider<MongoSystemRole> mongoSystemRoleProvider;
+    Provider<MongoSystemSkills> mongoSystemRoleProvider;
 
-    public MongoSystemRole withUserRole() {
-        return getRole(mongoSystemRoleProvider);
+    public MongoSystemSkills withUserSkills() {
+        MongoSystemSkills skills = mongoSystemRoleProvider.get();
+        skills.withAgent(this);
+        return skills;
     }
 
 }

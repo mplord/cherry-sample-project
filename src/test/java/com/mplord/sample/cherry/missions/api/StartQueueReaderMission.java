@@ -4,17 +4,13 @@ import javax.inject.Inject;
 
 import com.mplord.sample.mock.tools.QueueReader;
 
-import io.magentys.MissionTypedMemory;
+import io.magentys.mplord.Skill;
 import io.magentys.mplord.agent.AgentTypedMemory;
 
-public class StartQueueReader implements MissionTypedMemory<AgentTypedMemory> {
+public class StartQueueReaderMission extends Skill {
 
     @Inject
     private QueueReader queueReader;
-
-    public static StartQueueReader startedQueueReader() {
-        return new StartQueueReader();
-    }
 
     @Override
     public AgentTypedMemory accomplishAs(AgentTypedMemory agent) {
