@@ -1,6 +1,6 @@
 package com.mplord.sample.cherry.custom;
 
-import io.magentys.mplord.Skill;
+import io.magentys.mplord.skills.Skill;
 
 public class CherryScenario {
 

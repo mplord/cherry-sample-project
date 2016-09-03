@@ -7,9 +7,10 @@ import com.mplord.sample.cherry.missions.api.ConsumeLatestRecordsMission;
 import com.mplord.sample.cherry.missions.api.ReadLatestRecordFromStreamMission;
 import com.mplord.sample.cherry.missions.api.VerifyResponseTransactionIdMission;
 
-import io.magentys.mplord.Skills;
+import io.magentys.mplord.agent.AgentTypedMemory;
+import io.magentys.mplord.skills.Skills;
 
-public class ApiUserSkills extends Skills {
+public class ApiUserSkills extends Skills<AgentTypedMemory> {
 
     @Inject
     private Provider<ConsumeLatestRecordsMission> consumesAllTheLatestRecords;

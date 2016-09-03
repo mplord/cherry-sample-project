@@ -5,9 +5,10 @@ import javax.inject.Inject;
 import com.google.inject.Provider;
 import com.mplord.sample.cherry.missions.api.StartQueueReaderMission;
 
-import io.magentys.mplord.Skills;
+import io.magentys.mplord.agent.AgentTypedMemory;
+import io.magentys.mplord.skills.Skills;
 
-public class ApiSystemSkills extends Skills {
+public class ApiSystemSkills extends Skills<AgentTypedMemory> {
 
     @Inject
     private Provider<StartQueueReaderMission> startQueueReaderMission;

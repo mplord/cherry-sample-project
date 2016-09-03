@@ -8,10 +8,10 @@ import com.mplord.sample.cherry.memory.TheResponseRecord;
 import com.mplord.sample.cherry.tasks.WriteResultsTask;
 import com.mplord.sample.mock.tools.QueueReader;
 
-import io.magentys.mplord.Skill;
 import io.magentys.mplord.agent.AgentTypedMemory;
+import io.magentys.mplord.skills.Skill;
 
-public class ReadLatestRecordFromStreamMission extends Skill {
+public class ReadLatestRecordFromStreamMission extends Skill<AgentTypedMemory> {
 
     @Inject
     private QueueReader queueReader;

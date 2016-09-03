@@ -5,9 +5,10 @@ import javax.inject.Inject;
 import com.google.inject.Provider;
 import com.mplord.sample.cherry.missions.mongo.AddFilingHistoryDeltaMission;
 
-import io.magentys.mplord.Skills;
+import io.magentys.mplord.agent.AgentTypedMemory;
+import io.magentys.mplord.skills.Skills;
 
-public class MongoSystemSkills extends Skills {
+public class MongoSystemSkills extends Skills<AgentTypedMemory> {
 
     @Inject
     private Provider<AddFilingHistoryDeltaMission> causesAFilingHistoryDeltaToBeSentFromChips;

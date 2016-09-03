@@ -7,10 +7,10 @@ import javax.inject.Inject;
 import com.mplord.sample.cherry.tasks.WriteResultsTask;
 import com.mplord.sample.mock.tools.QueueReader;
 
-import io.magentys.mplord.Skill;
 import io.magentys.mplord.agent.AgentTypedMemory;
+import io.magentys.mplord.skills.Skill;
 
-public class ConsumeLatestRecordsMission extends Skill {
+public class ConsumeLatestRecordsMission extends Skill<AgentTypedMemory> {
 
     @Inject
     private QueueReader queueReader;

@@ -8,10 +8,10 @@ import com.mplord.sample.cherry.memory.TheFilingHistory;
 import com.mplord.sample.cherry.memory.TheResponseRecord;
 import com.mplord.sample.mock.objects.FilingHistory;
 
-import io.magentys.mplord.Skill;
 import io.magentys.mplord.agent.AgentTypedMemory;
+import io.magentys.mplord.skills.Skill;
 
-public class VerifyResponseTransactionIdMission extends Skill {
+public class VerifyResponseTransactionIdMission extends Skill<AgentTypedMemory> {
 
     @Inject
     private TheFilingHistory theFilingHistory;

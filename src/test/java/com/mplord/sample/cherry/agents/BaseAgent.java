@@ -6,8 +6,8 @@ import com.google.inject.Provider;
 import com.mplord.sample.cherry.roles.agent.AgentCommsRole;
 
 import io.magentys.commons.typemap.TypedKey;
-import io.magentys.mplord.Skill;
 import io.magentys.mplord.agent.AgentTypedMemory;
+import io.magentys.mplord.skills.Skill;
 
 public class BaseAgent extends AgentTypedMemory {
 
