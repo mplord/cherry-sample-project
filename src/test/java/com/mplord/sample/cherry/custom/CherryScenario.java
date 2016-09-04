@@ -1,41 +1,47 @@
 package com.mplord.sample.cherry.custom;
 
+import io.magentys.mplord.agent.AgentBase;
+import io.magentys.mplord.agent.AgentTypedMemory;
 import io.magentys.mplord.skills.Skill;
 
-public class CherryScenario {
+public class CherryScenario<AGENT extends AgentBase<AGENT>> {
 
     private String title;
 
-    public static CherryScenario start(String title) {
-        return new CherryScenario(title);
+    public static CherryScenario<AgentTypedMemory> withTypedMemoryAgents() {
+        return new CherryScenario<AgentTypedMemory>();
     }
 
-    public CherryScenario(String title) {
+    public CherryScenario() {
+    }
+
+    public CherryScenario<AGENT> scenario(String title) {
         this.title = title;
+        return this;
     }
 
     public String getTitle() {
         return title;
     }
 
-    private CherryScenario perform(Skill skill) {
+    private CherryScenario<AGENT> perform(Skill<AGENT> skill) {
         skill.accomplish();
         return this;
     }
 
-    public CherryScenario given(Skill skill) {
+    public CherryScenario<AGENT> given(Skill<AGENT> skill) {
         return perform(skill);
     }
 
-    public CherryScenario when(Skill skill) {
+    public CherryScenario<AGENT> when(Skill<AGENT> skill) {
         return perform(skill);
     }
 
-    public CherryScenario then(Skill skill) {
+    public CherryScenario<AGENT> then(Skill<AGENT> skill) {
         return perform(skill);
     }
 
-    public CherryScenario and(Skill skill) {
+    public CherryScenario<AGENT> and(Skill<AGENT> skill) {
         return perform(skill);
     }
 

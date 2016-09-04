@@ -27,7 +27,7 @@ public class BaseAgent extends AgentTypedMemory {
         return this;
     }
 
-    public Skill about(TypedKey<?> key) {
+    public Skill<AgentTypedMemory> about(TypedKey<?> key) {
         return withCommsRole().asksAgent(otherAgent, key);
     }
 
@@ -36,15 +36,15 @@ public class BaseAgent extends AgentTypedMemory {
         return this;
     }
 
-    public Skill of(TypedKey<?> key) {
+    public Skill<AgentTypedMemory> of(TypedKey<?> key) {
         return withCommsRole().informsAgent(otherAgent, key);
     }
 
-    public Skill asksAgent(AgentTypedMemory otherAgent, TypedKey<?> key) {
+    public Skill<AgentTypedMemory> asksAgent(AgentTypedMemory otherAgent, TypedKey<?> key) {
         return withCommsRole().asksAgent(otherAgent, key);
     }
 
-    public Skill informsAgent(AgentTypedMemory otherAgent, TypedKey<?> key) {
+    public Skill<AgentTypedMemory> informsAgent(AgentTypedMemory otherAgent, TypedKey<?> key) {
         return withCommsRole().informsAgent(otherAgent, key);
     }
 }
